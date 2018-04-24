@@ -1,0 +1,23 @@
+resources:
+- repo: self
+queue:
+  name: Hosted Linux Preview
+  demands: java
+
+
+steps:
+- task: Gradle@2
+  inputs:
+    options: '--no-daemon'
+
+- task: Docker@0
+  inputs:
+    azureSubscription: 'Free Trial (c97858e6-3417-4146-940d-e0d6cd7d7db7)'
+    azureContainerRegistry: '{"loginServer":"azurus.azurecr.io", "id" : "/subscriptions/c97858e6-3417-4146-940d-e0d6cd7d7db7/resourceGroups/azurus/providers/Microsoft.ContainerRegistry/registries/azurus"}'
+
+- task: Docker@0
+  inputs:
+    azureSubscription: 'Free Trial (c97858e6-3417-4146-940d-e0d6cd7d7db7)'
+    azureContainerRegistry: '{"loginServer":"azurus.azurecr.io", "id" : "/subscriptions/c97858e6-3417-4146-940d-e0d6cd7d7db7/resourceGroups/azurus/providers/Microsoft.ContainerRegistry/registries/azurus"}'
+    action: 'Push an image'
+
