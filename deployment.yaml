@@ -1,5 +1,5 @@
 apiVersion: apps/v1beta2
-kind: deployment
+kind: Deployment
 metadata:
   name: sample-azure-k8n-deployment
   labels:
