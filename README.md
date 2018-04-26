@@ -14,6 +14,12 @@ az aks get-credentials --resource-group=azurus --name=foo
 1. `az aks get-credentials` returns immediately, but takes an unspecified amount of time to actually work.  Be patient.
 1. If it's all working, `kubectl get nodes` will show you the nodes you've created.
 
+## Deploying to a cluster
+Until I've been through the process of setting up CD, you can run a common or garden:
+```bash
+kubectl apply -f deployment.yaml
+```
+
 ## Tearing down an AKS cluster on Azure
 To avoid burning money, you'll probably want to tear down clusters when you're finished with them:
  ```bash
