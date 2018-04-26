@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta2
+kind: deployment
+metadata:
+  name: sample-azure-k8n-deployment
+  labels:
+    app: sample-azure-k8n
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample-azure-k8n
+  template:
+    metadata:
+      labels:
+        app: sample-azure-k8n
+    spec:
+      containers:
+      - name: sample-azure-k8n
+        image: sample-azure-k8n:9
