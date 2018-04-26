@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: sample-azure-k8n
-        image: sample-azure-k8n:9
+        image: azurus.azurecr.io/sample-azure-k8n
