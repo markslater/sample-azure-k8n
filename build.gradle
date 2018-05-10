@@ -2,6 +2,17 @@ plugins {
     id 'java'
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.microsoft.azure', name: 'azure-documentdb', version: '1.16.0'
+    compile group: 'net.sourceforge.argo', name: 'argo', version: '5.4'
+    compile group: 'net.sourceforge.sorb', name: 'sorb', version: '0.8'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+}
+
 jar {
     manifest {
         attributes('Main-Class': 'azurus.Azurus')
