@@ -19,7 +19,7 @@ public final class Azurus {
                 final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
             final String masterKey = org.apache.commons.io.IOUtils.toString(inputStreamReader);
             System.out.println("Got a master key that was " + masterKey.length() + " characters long.");
-            try (final RequestStorage requestStorage = new RequestStorageService("foo", masterKey).start()) {
+            try (final RequestStorage requestStorage = new RequestStorageService("https://azurus.documents.azure.com:443/", masterKey).start()) {
                 requestStorage.storeSomething();
                 System.out.println("Stored something...");
             }
