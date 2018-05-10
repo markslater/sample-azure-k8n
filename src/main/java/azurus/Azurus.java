@@ -31,7 +31,7 @@ public final class Azurus {
             try (final OutputStream outputStream = httpExchange.getResponseBody();
                  final Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)) {
                 writer.write("Hello, World!");
-                requestStorage.store(requestURI, protocol, requestMethod, clientAddress);
+                requestStorage.store(requestURI, protocol, requestMethod, clientAddress); // TODO hostname?
             }
         });
         httpServer.setExecutor(newFixedThreadPool(10));
