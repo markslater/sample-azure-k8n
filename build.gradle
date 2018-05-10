@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
 }
 
 repositories {
@@ -17,6 +18,10 @@ jar {
     manifest {
         attributes('Main-Class': 'azurus.Azurus')
     }
+}
+
+shadowJar {
+    classifier null
 }
 
 task wrapper(type: Wrapper) {
