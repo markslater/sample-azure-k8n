@@ -27,7 +27,6 @@ public final class Azurus {
             final String requestMethod = httpExchange.getRequestMethod();
             final String clientAddress = httpExchange.getRemoteAddress().getAddress().getHostAddress();
             httpExchange.getResponseHeaders().add("Content-Type", "text/plain;charset=utf-8");
-            ;
             httpExchange.sendResponseHeaders(200, 0);
             try (final OutputStream outputStream = httpExchange.getResponseBody();
                  final Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8)) {
@@ -44,7 +43,6 @@ public final class Azurus {
     }
 
     private static String lookupMasterKey() throws Exception {
-        String masterKey;
         try (
                 final InputStream inputStream = Files.newInputStream(Paths.get("etc", "cosmos-credentials", "master-key.txt"));
                 final InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
