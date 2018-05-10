@@ -6,6 +6,7 @@ import com.microsoft.azure.documentdb.*;
 import net.sourceforge.sorb.Service;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.net.URI;
 import java.util.List;
 
 import static argo.jdom.JsonNodeFactories.*;
@@ -61,17 +62,23 @@ final class RequestStorageService implements Service<RequestStorage> {
             final DocumentCollection todoCollection = getTodoCollection(documentClient);
             return new RequestStorage() {
                 @Override
-                public void storeSomething() throws DocumentClientException {
+                public void store(URI requestURI, String protocol, String requestMethod, String clientAddress) {
                     final Document document = new Document(JSON_FORMATTER.format(object(
-                            field(RandomStringUtils.random(10), string(RandomStringUtils.random(10))),
-                            field(RandomStringUtils.random(10), string(RandomStringUtils.random(10))),
+                            field("request URI", string(requestURI.toString())),
+                            field("protocol", string(protocol)),
+                            field("request method", string(requestMethod)),
+                            field("client address", string(clientAddress)),
                             field("_ts", string(RandomStringUtils.random(10))) // TODO Cosmos will silently overwrite this.  Thanks, Microsoft!
                     )));
-                    documentClient.createDocument(todoCollection.getSelfLink(), document, null, false);
+                    try {
+                        documentClient.createDocument(todoCollection.getSelfLink(), document, null, false);
+                    } catch (DocumentClientException e) {
+                        throw new RuntimeException("Failed to store something", e);
+                    }
                 }
 
                 @Override
-                public void close() throws Exception {
+                public void close() {
                     documentClient.close();
                 }
             };
