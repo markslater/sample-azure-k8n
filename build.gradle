@@ -12,6 +12,7 @@ dependencies {
     compile group: 'net.sourceforge.argo', name: 'argo', version: '5.4'
     compile group: 'net.sourceforge.sorb', name: 'sorb', version: '0.8'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
 }
 
 jar {
