@@ -25,6 +25,8 @@ shadowJar {
     classifier null
 }
 
+tasks.build.dependsOn tasks.shadowJar
+
 task wrapper(type: Wrapper) {
     gradleVersion = '4.7'
 }
