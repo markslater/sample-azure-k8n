@@ -29,6 +29,12 @@ az role assignment create --role Contributor --assignee-object-id [the SPN you j
 
 As a fall-back, you can hold your nose and poke about in the Azure UI to add your SPN as a 'Contributor' to the container registry.
 
+The Azurus process needs the CosmosDB master key to be supplied as a secret:
+```bash
+echo -n [whatever master key] > ./master-key.txt
+kubectl create secret generic cosmos-credentials --from-file=./master-key.txt
+```
+
 Until I've been through the process of setting up CD, you can run a common or garden:
 ```bash
 kubectl apply -f deployment.yaml
