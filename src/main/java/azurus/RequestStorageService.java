@@ -57,9 +57,12 @@ final class RequestStorageService implements Service<RequestStorage> {
 
     @Override
     public RequestStorage start() {
+        System.out.println("Creating document client");
         final DocumentClient documentClient = new DocumentClient(host, masterKey, ConnectionPolicy.GetDefault(), ConsistencyLevel.Session);
+        System.out.println("Created document client");
         try {
             final DocumentCollection todoCollection = getTodoCollection(documentClient);
+            System.out.println("Created todo collection");
             return new RequestStorage() {
                 @Override
                 public void store(URI requestURI, String protocol, String requestMethod, String clientAddress) {

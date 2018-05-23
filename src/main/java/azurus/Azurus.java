@@ -17,7 +17,9 @@ public final class Azurus {
     public static void main(final String... args) throws Exception {
         System.out.println("Hello, World!");
         final String masterKey = lookupMasterKey(); // TODO... this ought to happen on demand, to pick up changed secrets.
+        System.out.println("masterKey = " + masterKey);
         final RequestStorage requestStorage = new RequestStorageService("https://request-storage-service/", masterKey).start();
+        System.out.println("Started request storage service");
 
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
         httpServer.createContext("/", httpExchange -> {
@@ -34,7 +36,9 @@ public final class Azurus {
             }
         });
         httpServer.setExecutor(newFixedThreadPool(10));
+        System.out.println("Created web server");
         httpServer.start();
+        System.out.println("Started web server");
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             httpServer.stop(10);
             requestStorage.close();
