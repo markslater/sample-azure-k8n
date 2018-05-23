@@ -18,7 +18,7 @@ public final class Azurus {
         System.out.println("Hello, World!");
         final String masterKey = lookupMasterKey(); // TODO... this ought to happen on demand, to pick up changed secrets.
         System.out.println("masterKey = " + masterKey);
-        final RequestStorage requestStorage = new RequestStorageService("https://request-storage-service/", masterKey).start();
+        final RequestStorage requestStorage = new RequestStorageService("https://azurus.documents.azure.com:443/", masterKey).start();
         System.out.println("Started request storage service");
 
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
