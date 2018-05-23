@@ -10,4 +10,11 @@ spec:
     port: 80
     targetPort: 8080
   type: LoadBalancer
-#  TODO - Add Cosmos DB as an external service.
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: request-storage-service
+spec:
+  type: ExternalName
+  externalName: azurus.documents.azure.com

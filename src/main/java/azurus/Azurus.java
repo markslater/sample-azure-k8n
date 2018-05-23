@@ -17,8 +17,7 @@ public final class Azurus {
     public static void main(final String... args) throws Exception {
         System.out.println("Hello, World!");
         final String masterKey = lookupMasterKey(); // TODO... this ought to happen on demand, to pick up changed secrets.
-        final RequestStorage requestStorage = new RequestStorageService("https://azurus.documents.azure.com:443/", masterKey).start();
-
+        final RequestStorage requestStorage = new RequestStorageService("https://request-storage-service/", masterKey).start();
 
         HttpServer httpServer = HttpServer.create(new InetSocketAddress(8080), 0);
         httpServer.createContext("/", httpExchange -> {
