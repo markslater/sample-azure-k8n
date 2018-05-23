@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sample-azure-k8n
-        image: azurus.azurecr.io/sample-azure-k8n:19
+        image: azurus.azurecr.io/sample-azure-k8n:20
         volumeMounts:
         - name: cosmos-credentials
           mountPath: /etc/cosmos-credentials
